@@ -6,7 +6,7 @@ PyTorch models for distinguishing real and AI-generated images on CIFAKE. This p
 
 **Team:** Alexander Mack, Chapin Meny, Karthik Eswarapragada, Mark Currin, and Omar Nassar El Dine.
 
-**Repository URL:** TODO — insert the actual GitHub URL before submission.
+**Repository URL:** (https://github.com/asm8ax/Deep-Learning-Final-Project)
 
 ## Research questions
 
