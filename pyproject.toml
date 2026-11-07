@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ds6050-g07-cifake"
+version = "0.1.0"
+description = "Baseline CNN and ResNet-18 comparisons for real versus AI-generated CIFAKE images"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+authors = [
+  {name = "Alexander Mack"},
+  {name = "Chapin Meny"},
+  {name = "Karthik Eswarapragada"},
+  {name = "Mark Currin"},
+  {name = "Omar Nassar El Dine"},
+]
+dynamic = ["dependencies"]
+
+[project.scripts]
+cifake-cnn = "cifake_detection.cnn:cli"
+cifake-resnet18 = "cifake_detection.resnet18:cli"
+cifake-check-data = "cifake_detection.data_loader:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}

@@ -1,0 +1,3 @@
+include requirements.txt
+recursive-include figures *.png
+recursive-include results *.txt *.log
