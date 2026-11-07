@@ -136,4 +136,4 @@ These results describe in-distribution CIFAKE performance. They do not establish
 
 ## Attribution
 
-Credit the CIFAKE dataset and the sources listed in the accompanying paper. The project's original bibliography file was not provided with this package. No software license has been selected; the team should agree on one before public redistribution. See the paper for the authors' generative-AI declaration, and update it as appropriate to reflect assistance with repository documentation and packaging.
+Credit the CIFAKE dataset and the sources listed in the accompanying paper. The project's original bibliography file was not provided with this package. No software license has been selected; the team should agree on one before public redistribution. See the paper for the authors' generative-AI declaration.
