@@ -1,0 +1,96 @@
+Using device: cuda
+
+Epoch 1/10
+------------------------------
+New best model saved. Validation Accuracy: 92.36%
+Train Loss: 0.2719, Train Acc: 88.65%
+Val Loss: 0.1903, Val Acc: 92.36%
+Val Precision: 0.9631
+Val Recall: 0.8803
+Val F1: 0.9199
+
+Epoch 2/10
+------------------------------
+New best model saved. Validation Accuracy: 94.19%
+Train Loss: 0.1817, Train Acc: 93.03%
+Val Loss: 0.1491, Val Acc: 94.19%
+Val Precision: 0.9413
+Val Recall: 0.9422
+Val F1: 0.9418
+
+Epoch 3/10
+------------------------------
+Train Loss: 0.1556, Train Acc: 94.07%
+Val Loss: 0.4479, Val Acc: 82.69%
+Val Precision: 0.9870
+Val Recall: 0.6613
+Val F1: 0.7920
+
+Epoch 4/10
+------------------------------
+New best model saved. Validation Accuracy: 94.79%
+Train Loss: 0.1362, Train Acc: 94.81%
+Val Loss: 0.1397, Val Acc: 94.79%
+Val Precision: 0.9561
+Val Recall: 0.9385
+Val F1: 0.9472
+
+Epoch 5/10
+------------------------------
+Train Loss: 0.1214, Train Acc: 95.39%
+Val Loss: 0.1441, Val Acc: 94.61%
+Val Precision: 0.9190
+Val Recall: 0.9781
+Val F1: 0.9476
+
+Epoch 6/10
+------------------------------
+New best model saved. Validation Accuracy: 95.69%
+Train Loss: 0.1057, Train Acc: 95.96%
+Val Loss: 0.1129, Val Acc: 95.69%
+Val Precision: 0.9677
+Val Recall: 0.9451
+Val F1: 0.9563
+
+Epoch 7/10
+------------------------------
+Train Loss: 0.0916, Train Acc: 96.50%
+Val Loss: 0.1188, Val Acc: 95.50%
+Val Precision: 0.9645
+Val Recall: 0.9443
+Val F1: 0.9543
+
+Epoch 8/10
+------------------------------
+Train Loss: 0.0793, Train Acc: 96.99%
+Val Loss: 0.1204, Val Acc: 95.66%
+Val Precision: 0.9778
+Val Recall: 0.9340
+Val F1: 0.9554
+
+Epoch 9/10
+------------------------------
+New best model saved. Validation Accuracy: 95.94%
+Train Loss: 0.0685, Train Acc: 97.37%
+Val Loss: 0.1164, Val Acc: 95.94%
+Val Precision: 0.9560
+Val Recall: 0.9629
+Val F1: 0.9594
+
+Epoch 10/10
+------------------------------
+Train Loss: 0.0548, Train Acc: 97.89%
+Val Loss: 0.1258, Val Acc: 95.43%
+Val Precision: 0.9400
+Val Recall: 0.9702
+Val F1: 0.9549
+
+Loaded model with validation accuracy: 95.94%
+
+Final Model Performance
+-------------------------------------------------------------------------------------
+Dataset            Loss     Accuracy    Precision       Recall           F1
+-------------------------------------------------------------------------------------
+Train            0.0437       98.47%       0.9844       0.9850       0.9847
+Validation       0.1164       95.94%       0.9560       0.9629       0.9594
+Test             0.1132       95.97%       0.9595       0.9600       0.9598

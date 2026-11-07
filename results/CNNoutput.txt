@@ -1,0 +1,100 @@
+(ds6050) bash-4.4$python cnn.py                                                          
+Using device: cuda
+
+Epoch 1/10
+------------------------------
+New best model saved. Validation Accuracy: 89.06%
+Train Loss: 0.3488, Train Acc: 84.79%
+Val Loss: 0.2668, Val Acc: 89.06%
+Val Precision: 0.8734
+Val Recall: 0.9127
+Val F1: 0.8926
+
+Epoch 2/10
+------------------------------
+New best model saved. Validation Accuracy: 90.11%
+Train Loss: 0.2507, Train Acc: 89.93%
+Val Loss: 0.2321, Val Acc: 90.11%
+Val Precision: 0.8620
+Val Recall: 0.9542
+Val F1: 0.9058
+
+Epoch 3/10
+------------------------------
+New best model saved. Validation Accuracy: 92.03%
+Train Loss: 0.2179, Train Acc: 91.42%
+Val Loss: 0.2014, Val Acc: 92.03%
+Val Precision: 0.9249
+Val Recall: 0.9143
+Val F1: 0.9195
+
+Epoch 4/10
+------------------------------
+Train Loss: 0.1994, Train Acc: 92.18%
+Val Loss: 0.2093, Val Acc: 91.27%
+Val Precision: 0.8810
+Val Recall: 0.9535
+Val F1: 0.9158
+
+Epoch 5/10
+------------------------------
+New best model saved. Validation Accuracy: 92.11%
+Train Loss: 0.1857, Train Acc: 92.74%
+Val Loss: 0.2025, Val Acc: 92.11%
+Val Precision: 0.9575
+Val Recall: 0.8805
+Val F1: 0.9174
+
+Epoch 6/10
+------------------------------
+New best model saved. Validation Accuracy: 92.33%
+Train Loss: 0.1750, Train Acc: 93.25%
+Val Loss: 0.1923, Val Acc: 92.33%
+Val Precision: 0.9358
+Val Recall: 0.9083
+Val F1: 0.9218
+
+Epoch 7/10
+------------------------------
+New best model saved. Validation Accuracy: 93.03%
+Train Loss: 0.1677, Train Acc: 93.46%
+Val Loss: 0.1778, Val Acc: 93.03%
+Val Precision: 0.9366
+Val Recall: 0.9226
+Val F1: 0.9296
+
+Epoch 8/10
+------------------------------
+Train Loss: 0.1599, Train Acc: 93.86%
+Val Loss: 0.1850, Val Acc: 92.80%
+Val Precision: 0.9577
+Val Recall: 0.8949
+Val F1: 0.9252
+
+Epoch 9/10
+------------------------------
+New best model saved. Validation Accuracy: 93.43%
+Train Loss: 0.1537, Train Acc: 94.07%
+Val Loss: 0.1652, Val Acc: 93.43%
+Val Precision: 0.9210
+Val Recall: 0.9496
+Val F1: 0.9351
+
+Epoch 10/10
+------------------------------
+Train Loss: 0.1496, Train Acc: 94.21%
+Val Loss: 0.1840, Val Acc: 92.56%
+Val Precision: 0.9084
+Val Recall: 0.9459
+Val F1: 0.9268
+
+Loaded model with validation accuracy: 93.43%
+
+Final Model Performance
+-------------------------------------------------------------------------------------
+Dataset            Loss     Accuracy    Precision       Recall           F1
+-------------------------------------------------------------------------------------
+Train            0.1386       94.80%       0.9366       0.9612       0.9487
+Validation       0.1652       93.43%       0.9210       0.9496       0.9351
+Test             0.1699       93.31%       0.9214       0.9469       0.9340
+(ds6050) bash-4.4$
