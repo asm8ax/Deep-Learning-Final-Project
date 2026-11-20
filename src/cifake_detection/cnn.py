@@ -3,6 +3,8 @@ from torch import nn
 from .data_loader import make_loaders
 from sklearn.metrics import precision_score, recall_score, f1_score
 import matplotlib.pyplot as plt
+import pandas as pd
+import time
 
 class CNN(nn.Module):
     def __init__(self):
@@ -59,7 +61,7 @@ class CNN(nn.Module):
 # define the function to send us through the CNN neural network
 def train_epoch(model, loader, criterion, optimizer, device):
     model.train()
-    
+
     running_loss = 0.0
     correct = 0
     total = 0
@@ -72,11 +74,11 @@ def train_epoch(model, loader, criterion, optimizer, device):
 
         # Reset gradients
         optimizer.zero_grad()
-        
+
         # Forward Pass
         outputs = model(inputs)
         labels = labels.float().unsqueeze(1)
-        
+
         # calculate loss
         loss = criterion(outputs, labels)
 
@@ -130,7 +132,7 @@ def evaluate(model, loader, criterion, device):
     precision = precision_score(all_labels, all_predictions, zero_division=0)
     recall = recall_score(all_labels, all_predictions, zero_division=0)
     f1 = f1_score(all_labels, all_predictions, zero_division=0)
-    
+
     return epoch_loss, epoch_acc, precision, recall, f1
 
 def plot_training_history(history, title = "Training History"):
@@ -161,8 +163,8 @@ def plot_training_history(history, title = "Training History"):
     plt.close()
 
 
-def main():
-    torch.manual_seed(42)
+def main(seed):
+    torch.manual_seed(seed)
 
     # load the data from the other script
     train_loader, val_loader, test_loader = make_loaders()
@@ -185,15 +187,20 @@ def main():
 
     # keep track of metrics throughout run
     history = {
-        'train_loss': [], 
-        'train_acc': [], 
-        'val_loss': [], 
+        'train_loss': [],
+        'train_acc': [],
+        'val_loss': [],
         'val_acc': [],
         'val_precision': [],
         'val_recall': [],
         'val_f1': []
     }
     best_val_acc = 0.0
+
+    # Track some time and memory metrics
+    if device.type == "cuda":
+        torch.cuda.reset_peak_memory_stats()
+    start_train = time.time()
 
     # loop over epochs and train the model
     for epoch in range(num_epochs):
@@ -202,18 +209,18 @@ def main():
 
         # training metrics
         train_loss, train_acc = train_epoch(
-            model, 
-            train_loader, 
-            criterion, 
-            optimizer, 
+            model,
+            train_loader,
+            criterion,
+            optimizer,
             device
         )
 
         # validation metrics
         val_loss, val_acc, val_precision, val_recall, val_f1 = evaluate(
-            model, 
-            val_loader, 
-            criterion, 
+            model,
+            val_loader,
+            criterion,
             device
         )
 
@@ -229,7 +236,7 @@ def main():
         # save the best model (based on validation accuracy)
         if val_acc > best_val_acc:
             best_val_acc = val_acc
-            torch.save(model.state_dict(), "cnn_baseline_best.pth")
+            torch.save(model.state_dict(), f"cnn_baseline_seed{seed}_best.pth")
             print(f"New best model saved. Validation Accuracy: {best_val_acc:.2f}%")
 
         # Print loss/accuracy for each epoch
@@ -239,15 +246,42 @@ def main():
         print(f'Val Recall: {val_recall:.4f}')
         print(f'Val F1: {val_f1:.4f}')
 
+    # Track the time spent training
+    train_time = time.time() - start_train
+    print(f"Training Time: {train_time:.2f} seconds")
+
+    # Track GPU memory from training
+    gpu_memory = torch.cuda.max_memory_allocated() if device.type == "cuda" else None
+    if gpu_memory is not None:
+        print(f"Peak GPU Memory: {gpu_memory:.2f} Bytes")
+
     # best model is saved, load it to gather final metrics
     model.load_state_dict(
         torch.load(
-            "cnn_baseline_best.pth",
+            f"cnn_baseline_seed{seed}_best.pth",
             map_location=device,
             weights_only=True
         )
     )
     print(f"\nLoaded model with validation accuracy: {best_val_acc:.2f}%")
+
+    ## Inference latency test
+    model.eval()
+
+    image = torch.randn(1, 3, 32, 32).to(device)
+
+    with torch.no_grad():
+        start = time.time()
+
+        for _ in range(100):
+            model(image)
+
+        if device.type == "cuda":
+            torch.cuda.synchronize()
+
+        inference_time = (time.time() - start) / 100 * 1000
+
+    print(f"Inference latency: {inference_time:.4f} ms/image")
 
     # evaluate the best model on the training, evaluation, and test sets
     train_metrics = evaluate(model, train_loader, criterion, device)
@@ -267,15 +301,35 @@ def main():
     ]:
         loss, acc, precision, recall, f1 = metrics
 
-        print(f"{name:<12} {loss:>10.4f} {acc:>11.2f}% {precision:>12.4f} {recall:>12.4f} {f1:>12.4f}")   
+        print(f"{name:<12} {loss:>10.4f} {acc:>11.2f}% {precision:>12.4f} {recall:>12.4f} {f1:>12.4f}")
 
     # plot training curves
-    plot_training_history(history, title="CNN_Baseline")
+    plot_training_history(history, title=f"CNN_Baseline_Seed{seed}")
 
-    return history
+    return {
+        'seed': seed,
+        'test_loss': test_metrics[0],
+        'test_accuracy': test_metrics[1],
+        'test_precision': test_metrics[2],
+        'test_recall': test_metrics[3],
+        'test_f1': test_metrics[4],
+        'train_time_seconds': train_time,
+        'gpu_memory_bytes': gpu_memory,
+        'inference_ms_per_image': inference_time
+    }
 
 def cli():
-    main()
+    results = []
+
+    for seed in [42, 43, 44]:
+        print(f"\nTraining 32-filter CNN with seed {seed}")
+
+        metrics = main(seed)
+        results.append(metrics)
+
+    pd.DataFrame(results).to_csv("cnn_baseline_seed_results.csv", index=False)
+
+    print("\nResults saved to cnn_baseline_seed_results.csv")
 
 
 if __name__ == "__main__":

@@ -20,6 +20,7 @@ dynamic = ["dependencies"]
 [project.scripts]
 cifake-cnn = "cifake_detection.cnn:cli"
 cifake-resnet18 = "cifake_detection.resnet18:cli"
+cifake-cnn-ablation = "cifake_detection.cnn_ablation:cli"
 cifake-check-data = "cifake_detection.data_loader:main"
 
 [tool.setuptools.packages.find]
