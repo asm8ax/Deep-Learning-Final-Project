@@ -89,7 +89,7 @@ The scripts write seed-specific checkpoints and training plots in the working di
 
 Scratch ResNet-18 gained 2.71 percentage points over the 32-filter CNN with about 916 times the trainable parameters. Removing skip connections reduced mean accuracy by 0.28 points. These comparisons describe performance on the original CIFAKE test set. Robustness to blur and JPEG compression is future work.
 
-The [baseline](results/cnn_baseline_seed_results.csv) and [16-filter CNN](results/cnn_ablation_seed_results.csv) files are the team's final CSV exports. The [ResNet results](results/resnet18_seed_results.csv) were transcribed from the paper's per-seed table at its reported precision. CNN training times include validation, while ResNet times cover training passes only.
+The [baseline](results/cnn_baseline_seed_results.csv) and [16-filter CNN](results/cnn_ablation_seed_results.csv) files are the team's final CSV exports. The [ResNet results](results/resnet18_seed_results.csv) combine [Omar’s four per-configuration CSVs](results/resnet) and include test loss, precision, recall, peak GPU memory (bytes), and inference time (ms per image). CNN training times include validation, while ResNet times cover training passes only.
 
 ## Training figures
 

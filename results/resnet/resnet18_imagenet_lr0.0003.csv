@@ -1,0 +1,4 @@
+seed,test_loss,test_accuracy,test_precision,test_recall,test_f1,train_time_seconds,gpu_memory_bytes,inference_ms_per_image
+42,0.0968,97.08,0.9733,0.9682,0.9707,259.9,327155712,2.32
+43,0.0999,97.05,0.9706,0.9704,0.9705,256.8,327155712,2.28
+44,0.0985,97.02,0.9789,0.9610,0.9699,260.8,327155712,2.34
